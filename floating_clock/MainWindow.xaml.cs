@@ -51,6 +51,7 @@ namespace floating_clock
 
             // set window to allows be on top
             this.Topmost = true;
+            this.ResizeMode = ResizeMode.NoResize;
 
             preferenceDelegate += new PreferenceDelegate(on_SetSavedPreference);
 
@@ -78,8 +79,6 @@ namespace floating_clock
         }
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-           // Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}", e.SignalTime);
-
             // TODO : move over to separate class/file
             // update ui text element that displays the time
             this.timerLabel.Content = preference.Is12HrFormat ? DateTime.Now.ToString("h:mm:ss tt") : DateTime.Now.ToString("HH:mm:ss");

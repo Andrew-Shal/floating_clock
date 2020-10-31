@@ -23,9 +23,7 @@ namespace floating_clock
 
             // rgb - 000 - black i think
             FontColor = Color.FromRgb(0, 0, 0);
-
             FontFamily = new FontFamily("Calibri");
-
             FontSize = 18;
             Is12HrFormat = true;
         }

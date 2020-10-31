@@ -64,7 +64,9 @@ namespace floating_clock
             Preference pref = new Preference();
             pref.FontColor = selectedColor;
             pref.FontFamily = new FontFamily(PreferenceFontFamilyCombo.SelectedValue.ToString());
-            pref.FontSize = PreferenceFontSizeSlider.Value;
+            pref.FontSize = Math.Round(PreferenceFontSizeSlider.Value,2);
+
+            
 
             // get time format
             bool is12TimeFormat = PreferenceTimeFormat12RadioBtn.IsChecked == true ? true : false;
@@ -82,7 +84,7 @@ namespace floating_clock
         {
             var slider = sender as Slider;
             // set font size text label
-            this.PreferenceFontSizeLabel.Content = slider.Value;
+            this.PreferenceFontSizeLabel.Content = Math.Round(slider.Value,2);
         }
     }
 }
