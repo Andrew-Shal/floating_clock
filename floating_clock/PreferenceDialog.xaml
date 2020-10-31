@@ -1,0 +1,27 @@
+﻿<Window x:Class="floating_clock.PreferenceDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:floating_clock"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        mc:Ignorable="d"
+        Title="PreferenceDialog" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <wpfTool:ColorPicker x:Name="colorPickerControl"></wpfTool:ColorPicker>
+            <ComboBox x:Name="PreferenceFontFamilyCombo" IsEditable="False" IsReadOnly="True"/>
+            <Slider x:Name="PreferenceFontSizeSlider" Maximum="100" ValueChanged="PreferenceFontSizeSlider_ValueChanged"/>
+            <Label Content="-" x:Name="PreferenceFontSizeLabel"></Label>
+            <Button x:Name="PreferenceSaveBtn" Content="Save" Click="PreferenceSaveBtn_Click"/>
+            <RadioButton GroupName="timeFormat" x:Name="PreferenceTimeFormat12RadioBtn">12 hr</RadioButton>
+            <RadioButton GroupName="timeFormat" x:Name="PreferenceTimeFormat24RadioBtn">24 hr</RadioButton>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,27 @@
+﻿<Window x:Class="floating_clock.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:floating_clock"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="MainWindow" Height="100" Width="300">
+    <Grid MouseDown="Grid_MouseDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Name="ExitMenuItem" Header="Exit" Click="ExitMenuItem_Click"></MenuItem>
+                <MenuItem Name="PreferenceMenuItem" Header="Preference" Click="PreferenceMenuItem_Click"></MenuItem>
+            </ContextMenu>
+        </Grid.ContextMenu>
+        <Label Grid.Row="0" Grid.Column="0" Content="timer" x:Name="timerLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20" />
+    </Grid>
+</Window>
