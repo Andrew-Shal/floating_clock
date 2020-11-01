@@ -15,8 +15,6 @@ using System.Windows.Shapes;
 
 using System.Windows.Threading;
 
-
-
 namespace floating_clock
 {
     // create delegate to pass data
@@ -68,7 +66,6 @@ namespace floating_clock
                 // create default preference
                 // should load with defaults
                 preference = new Preference(color, new FontFamily(fFamily), fSize, is12Format);
-
             }
             catch (Exception e) {
                 // fallback to default
@@ -91,6 +88,9 @@ namespace floating_clock
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
+
+            // set ui to saved preference
+            updateUI();
         }
 
         private void on_SetSavedPreference(Preference preferenceData)
@@ -135,6 +135,25 @@ namespace floating_clock
             PreferenceDialog preferenceDialog = new PreferenceDialog(preferenceDelegate, preference);
             preferenceDialog.Owner = this;
             preferenceDialog.ShowDialog();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // convert font color to string r,g,b
+            string color = $"{preference.FontColor.R},{preference.FontColor.G},{preference.FontColor.B}";
+
+            // convert font family to string
+            string family = preference.FontFamily.ToString();
+
+            // save settings
+            Properties.Settings.Default.Is12HrFormat = preference.Is12HrFormat;
+            Properties.Settings.Default.fontColor = color;
+            Properties.Settings.Default.fontSize = preference.FontSize;
+            Properties.Settings.Default.fontFamily = family;
+
+            // persist data
+            Properties.Settings.Default.Save();
+
         }
     }
 }
