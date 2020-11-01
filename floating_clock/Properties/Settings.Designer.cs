@@ -25,14 +25,49 @@ namespace floating_clock.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{\"FontColor\":{\"r\":\"0\",\"g\":\"0\",\"b\":\"0\"},\"FontFamily\":\"Calibri\",\"FontSize\":\"18\",\"Is" +
-            "12HrFormat\":\"true\"}")]
-        public string user_preferences {
+        [global::System.Configuration.DefaultSettingValueAttribute("0,0,0")]
+        public string fontColor {
             get {
-                return ((string)(this["user_preferences"]));
+                return ((string)(this["fontColor"]));
             }
             set {
-                this["user_preferences"] = value;
+                this["fontColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Calibri")]
+        public string fontFamily {
+            get {
+                return ((string)(this["fontFamily"]));
+            }
+            set {
+                this["fontFamily"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("18")]
+        public double fontSize {
+            get {
+                return ((double)(this["fontSize"]));
+            }
+            set {
+                this["fontSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Is12HrFormat {
+            get {
+                return ((bool)(this["Is12HrFormat"]));
+            }
+            set {
+                this["Is12HrFormat"] = value;
             }
         }
     }

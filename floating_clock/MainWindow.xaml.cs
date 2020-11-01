@@ -41,8 +41,39 @@ namespace floating_clock
         {
             InitializeComponent();
 
-            // create default preference
-            preference = new Preference();
+            // move in separate func
+            try
+            {
+                // add in try/catch bcz we cant gurantee setting will load correct from file
+                // get preferences from settings
+
+                string fColor = Properties.Settings.Default.fontColor;
+                string fFamily = Properties.Settings.Default.fontFamily;
+                double fSize = Properties.Settings.Default.fontSize;
+                bool is12Format = Properties.Settings.Default.Is12HrFormat;
+
+
+                // parse color string format "0,0,0" to Color obj
+                var colorArrRGB = fColor.Split(',');
+
+                // TODO rethink this
+                // rgb
+                byte r = Convert.ToByte(colorArrRGB[0]);
+                byte g = Convert.ToByte(colorArrRGB[1]);
+                byte b = Convert.ToByte(colorArrRGB[2]);
+
+                // create color from rgb
+                var color = Color.FromRgb(r, g, b);
+
+                // create default preference
+                // should load with defaults
+                preference = new Preference(color, new FontFamily(fFamily), fSize, is12Format);
+
+            }
+            catch (Exception e) {
+                // fallback to default
+                preference = new Preference();
+            }
 
             // TODO: start timer and update every ~1
             // set time

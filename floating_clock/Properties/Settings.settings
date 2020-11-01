@@ -2,8 +2,17 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="floating_clock.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="user_preferences" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{"FontColor":{"r":"0","g":"0","b":"0"},"FontFamily":"Calibri","FontSize":"18","Is12HrFormat":"true"}</Value>
+    <Setting Name="fontColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0,0,0</Value>
+    </Setting>
+    <Setting Name="fontFamily" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Calibri</Value>
+    </Setting>
+    <Setting Name="fontSize" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">18</Value>
+    </Setting>
+    <Setting Name="Is12HrFormat" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
