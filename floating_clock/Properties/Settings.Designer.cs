@@ -70,5 +70,29 @@ namespace floating_clock.Properties {
                 this["Is12HrFormat"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double top {
+            get {
+                return ((double)(this["top"]));
+            }
+            set {
+                this["top"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double left {
+            get {
+                return ((double)(this["left"]));
+            }
+            set {
+                this["left"] = value;
+            }
+        }
     }
 }

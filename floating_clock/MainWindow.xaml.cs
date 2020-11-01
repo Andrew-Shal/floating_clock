@@ -20,8 +20,6 @@ namespace floating_clock
     // create delegate to pass data
     public delegate void PreferenceDelegate(Preference preference);
 
-
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -50,6 +48,14 @@ namespace floating_clock
                 double fSize = Properties.Settings.Default.fontSize;
                 bool is12Format = Properties.Settings.Default.Is12HrFormat;
 
+                double top = Properties.Settings.Default.top;
+                double left = Properties.Settings.Default.left;
+
+                if (top != 0 && left != 0) {
+                    // set window position
+                    this.Top = top;
+                    this.Left = left;
+                }
 
                 // parse color string format "0,0,0" to Color obj
                 var colorArrRGB = fColor.Split(',');
@@ -144,6 +150,14 @@ namespace floating_clock
 
             // convert font family to string
             string family = preference.FontFamily.ToString();
+
+            // get window top and left position
+            double top = this.Top;
+            double left = this.Left;
+
+            Properties.Settings.Default.top = top;
+            Properties.Settings.Default.left = left;
+
 
             // save settings
             Properties.Settings.Default.Is12HrFormat = preference.Is12HrFormat;
