@@ -87,8 +87,8 @@ namespace floating_clock
 
             // TODO: start timer and update every ~1
             // set time
-            string time = DateTime.Now.ToString("h:mm:ss tt");
-            this.timerLabel.Content = time;
+            /*string time = DateTime.Now.ToString("h:mm:ss tt");
+            this.timerLabel.Content = time;*/
 
             // set window to allows be on top
             this.Topmost = true;
@@ -117,16 +117,23 @@ namespace floating_clock
         {
             // set ui data
             this.timerLabel.Foreground = new SolidColorBrush(preference.FontColor);
+            this.dateLabel.Foreground = new SolidColorBrush(preference.FontColor);
+            this.searchLabel.Foreground = new SolidColorBrush(preference.FontColor);
+            this.searchBox.Foreground = new SolidColorBrush(preference.FontColor);
+
             this.Background = new SolidColorBrush(preference.BackgroundColor);
+
+
             this.timerLabel.FontFamily = preference.FontFamily;
             this.timerLabel.FontSize = preference.FontSize;
-            
         }
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             // TODO : move over to separate class/file
             // update ui text element that displays the time
             this.timerLabel.Content = preference.Is12HrFormat ? DateTime.Now.ToString("h:mm:ss tt") : DateTime.Now.ToString("HH:mm:ss");
+            // get current date dd/mm/yyyy - day
+            this.dateLabel.Content = DateTime.Today.ToString("dd MMM dddd");
         }
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
@@ -185,6 +192,16 @@ namespace floating_clock
             // allow window to be draggable
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void searchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string searchRequest = searchBox.Text;
+
+            if (searchRequest.Length == 0) return;
+            
+            // open external window
+            System.Diagnostics.Process.Start("http://www.google.com.au/search?q=" + System.Uri.EscapeDataString(searchRequest));
         }
     }
 }
