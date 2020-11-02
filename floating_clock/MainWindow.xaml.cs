@@ -32,7 +32,22 @@ namespace floating_clock
 
         // delegate to be used
         public PreferenceDelegate preferenceDelegate;
-        
+
+        private Color _getArgb(string argbString) {
+            // parse color string format "0,0,0" to Color obj
+            var colorArrARGB = argbString.Split(',');
+
+            // TODO rethink this
+            // rgb
+            byte a = Convert.ToByte(colorArrARGB[0]);
+            byte r = Convert.ToByte(colorArrARGB[1]);
+            byte g = Convert.ToByte(colorArrARGB[2]);
+            byte b = Convert.ToByte(colorArrARGB[3]);
+
+            // create color from argb bytes
+            return Color.FromArgb(a,r, g, b); 
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,6 +59,7 @@ namespace floating_clock
                 // get preferences from settings
 
                 string fColor = Properties.Settings.Default.fontColor;
+                string bckColor = Properties.Settings.Default.backgroundColor;
                 string fFamily = Properties.Settings.Default.fontFamily;
                 double fSize = Properties.Settings.Default.fontSize;
                 bool is12Format = Properties.Settings.Default.Is12HrFormat;
@@ -57,21 +73,12 @@ namespace floating_clock
                     this.Left = left;
                 }
 
-                // parse color string format "0,0,0" to Color obj
-                var colorArrRGB = fColor.Split(',');
-
-                // TODO rethink this
-                // rgb
-                byte r = Convert.ToByte(colorArrRGB[0]);
-                byte g = Convert.ToByte(colorArrRGB[1]);
-                byte b = Convert.ToByte(colorArrRGB[2]);
-
-                // create color from rgb
-                var color = Color.FromRgb(r, g, b);
+                Color backgroundColor = _getArgb(bckColor);
+                Color foreground = _getArgb(fColor);
 
                 // create default preference
                 // should load with defaults
-                preference = new Preference(color, new FontFamily(fFamily), fSize, is12Format);
+                preference = new Preference(foreground, backgroundColor, new FontFamily(fFamily), fSize, is12Format);
             }
             catch (Exception e) {
                 // fallback to default
@@ -110,6 +117,7 @@ namespace floating_clock
         {
             // set ui data
             this.timerLabel.Foreground = new SolidColorBrush(preference.FontColor);
+            this.Background = new SolidColorBrush(preference.BackgroundColor);
             this.timerLabel.FontFamily = preference.FontFamily;
             this.timerLabel.FontSize = preference.FontSize;
             
@@ -129,8 +137,8 @@ namespace floating_clock
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // allow window to be draggable
-            if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+            // if (e.ChangedButton == MouseButton.Left)
+            //    this.DragMove();
         }
 
         private void PreferenceMenuItem_Click(object sender, RoutedEventArgs e)
@@ -146,7 +154,8 @@ namespace floating_clock
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             // convert font color to string r,g,b
-            string color = $"{preference.FontColor.R},{preference.FontColor.G},{preference.FontColor.B}";
+            string foregroundColor = $"{preference.FontColor.A},{preference.FontColor.R},{preference.FontColor.G},{preference.FontColor.B}";
+            string backgroundColor = $"{preference.BackgroundColor.A},{preference.BackgroundColor.R},{preference.BackgroundColor.G},{preference.BackgroundColor.B}";
 
             // convert font family to string
             string family = preference.FontFamily.ToString();
@@ -161,13 +170,21 @@ namespace floating_clock
 
             // save settings
             Properties.Settings.Default.Is12HrFormat = preference.Is12HrFormat;
-            Properties.Settings.Default.fontColor = color;
+            Properties.Settings.Default.fontColor = foregroundColor;
+            Properties.Settings.Default.backgroundColor = backgroundColor;
             Properties.Settings.Default.fontSize = preference.FontSize;
             Properties.Settings.Default.fontFamily = family;
 
             // persist data
             Properties.Settings.Default.Save();
 
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // allow window to be draggable
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

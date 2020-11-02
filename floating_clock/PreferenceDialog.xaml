@@ -18,17 +18,23 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1">
-            <Label x:Name="PreferenceColorPickerLabel">Select Color</Label>
+            <Label x:Name="PreferenceColorPickerLabel">Select Foreground Color</Label>
             <wpfTool:ColorPicker x:Name="colorPickerControl"></wpfTool:ColorPicker>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1">
+            <Label x:Name="PreferenceBackgroundColorPickerLabel">Select Background Color</Label>
+            <wpfTool:ColorPicker x:Name="backgroundColorPickerControl"></wpfTool:ColorPicker>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
             <Label x:Name="PreferenceFontFamilyLabel">Select Font Family</Label>
             <ComboBox x:Name="PreferenceFontFamilyCombo" IsEditable="False" IsReadOnly="True"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1">
+        <StackPanel Grid.Row="3" Grid.Column="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
@@ -43,12 +49,12 @@
             <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Content="-" x:Name="PreferenceFontSizeLabel"></Label>
             </Grid>
         </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="1">
+        <StackPanel Grid.Row="4" Grid.Column="1">
             <Label  x:Name="PreferenceTimeFormatLabel">Select Time Format</Label>
             <RadioButton GroupName="timeFormat" x:Name="PreferenceTimeFormat12RadioBtn">12 hr</RadioButton>
             <RadioButton GroupName="timeFormat" x:Name="PreferenceTimeFormat24RadioBtn">24 hr</RadioButton>
         </StackPanel>
-        <StackPanel Grid.Row="4" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="PreferenceSaveBtn" Content="Save" Click="PreferenceSaveBtn_Click" Width="80"/>
         </StackPanel>
     </Grid>

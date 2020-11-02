@@ -45,6 +45,9 @@ namespace floating_clock
         private void setUIPreference()
         {
             colorPickerControl.SelectedColor = preference.FontColor;
+
+            backgroundColorPickerControl.SelectedColor = preference.BackgroundColor; 
+
             PreferenceFontFamilyCombo.SelectedValue = preference.FontFamily.ToString();
             PreferenceFontSizeSlider.Value = preference.FontSize;
             if (preference.Is12HrFormat)
@@ -60,12 +63,16 @@ namespace floating_clock
             // get all save preferences
             Color selectedColor = (Color)colorPickerControl.SelectedColor;
 
+            // get background color
+            Color selectedBckColor = (Color)backgroundColorPickerControl.SelectedColor;
+
+
             // create new prefeence obj
             Preference pref = new Preference();
             pref.FontColor = selectedColor;
             pref.FontFamily = new FontFamily(PreferenceFontFamilyCombo.SelectedValue.ToString());
             pref.FontSize = Math.Round(PreferenceFontSizeSlider.Value,2);
-
+            pref.BackgroundColor = selectedBckColor;
             
 
             // get time format

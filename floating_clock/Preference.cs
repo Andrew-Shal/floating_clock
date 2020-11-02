@@ -16,20 +16,24 @@ namespace floating_clock
         public FontFamily FontFamily { get; set; }
         public double FontSize { get; set; }
         public bool Is12HrFormat { get; set; }
+        public Color BackgroundColor{get; set;}
+
         public Preference()
         {
             // implement 
             // defaults
 
             // rgb - 000 - black i think
-            FontColor = Color.FromRgb(0, 0, 0);
+            FontColor = Color.FromArgb(255,0, 0, 0);
             FontFamily = new FontFamily("Calibri");
             FontSize = 18;
             Is12HrFormat = true;
+            BackgroundColor = Color.FromArgb(100, 0, 0, 0);
         }
-        public Preference(Color colorName, FontFamily fontFamily, double fontSize, bool is12HrFormat)
+        public Preference(Color foreground, Color background, FontFamily fontFamily, double fontSize, bool is12HrFormat)
         {
-            FontColor = colorName;
+            FontColor = foreground;
+            BackgroundColor = background;
             FontFamily = fontFamily;
             FontSize = fontSize;
             Is12HrFormat = is12HrFormat;

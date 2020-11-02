@@ -25,7 +25,7 @@ namespace floating_clock.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0,0,0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("255,0,0,0")]
         public string fontColor {
             get {
                 return ((string)(this["fontColor"]));
@@ -92,6 +92,18 @@ namespace floating_clock.Properties {
             }
             set {
                 this["left"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100,0,0,0")]
+        public string backgroundColor {
+            get {
+                return ((string)(this["backgroundColor"]));
+            }
+            set {
+                this["backgroundColor"] = value;
             }
         }
     }

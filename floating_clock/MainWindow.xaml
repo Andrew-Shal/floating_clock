@@ -8,7 +8,7 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
-        Title="MainWindow" Height="100" Width="300" Closing="Window_Closing">
+        Title="MainWindow" Height="100" Width="300" Closing="Window_Closing" MouseDown="Window_MouseDown">
     <Grid MouseDown="Grid_MouseDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
